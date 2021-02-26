@@ -7,6 +7,14 @@ main(){
 
 class PerguntaApp extends StatelessWidget{
 
+  void responder(){
+    print('Pergunta respondida!');
+  }
+  void Function() funcaoQueRetornaUmaOutraFuncao() {
+    return () {
+      print('Pergunta respondida #02!');
+    };
+  }
   Widget build(BuildContext context){
     final List<String> perguntas = [
       'Qual é a sua cor favorita?',
@@ -22,15 +30,21 @@ class PerguntaApp extends StatelessWidget{
             Text(perguntas.elementAt(0)),
             RaisedButton(
               child: Text('Resposta 1'),
-              onPressed: null,
+              onPressed: responder, //passar um refencia para uma função ja criada
             ),
             RaisedButton(
               child: Text('Resposta 2'),
-              onPressed: null,
+              onPressed: (){
+                print('Resposta 2 foi selecionada!'); //criando a função
+              }
             ),
             RaisedButton(
               child: Text('Resposta 3'),
-              onPressed: null,
+              onPressed: funcaoQueRetornaUmaOutraFuncao(),//Invocando função como parâmetro
+            ),
+            RaisedButton(
+              child: Text('Resposta 3'),
+              onPressed: () => print('Resposta 3!!!'),
             )
             
           ],
