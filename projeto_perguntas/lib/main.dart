@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 main(){
   runApp(new PerguntaApp());
 }
-
-class PerguntaApp extends StatelessWidget{
-
-  void responder(){
-    print('Pergunta respondida!');
+class PerguntaAppState extends State<PerguntaApp>{// o tipo de componente Stateful (PerguntaApp) ligado a esse componente state 
+//contém o estado e as funçôes que depende do mesmo 
+  var perguntasSelecionadas=0; 
+    
+  void responder(){// o método responder depende de estado 
+    setState(() {
+      perguntasSelecionadas++;
+    });
+    
+    print(perguntasSelecionadas);
   }
-  void Function() funcaoQueRetornaUmaOutraFuncao() {
-    return () {
-      print('Pergunta respondida #02!');
-    };
-  }
+//a aárvore de componentes também depende do estado
   Widget build(BuildContext context){
     final List<String> perguntas = [
       'Qual é a sua cor favorita?',
@@ -27,25 +28,20 @@ class PerguntaApp extends StatelessWidget{
         ),
         body: Column(
           children: <Widget>[
-            Text(perguntas.elementAt(0)),
+            Text(perguntas[perguntasSelecionadas]),
             RaisedButton(
               child: Text('Resposta 1'),
               onPressed: responder, //passar um refencia para uma função ja criada
             ),
             RaisedButton(
               child: Text('Resposta 2'),
-              onPressed: (){
-                print('Resposta 2 foi selecionada!'); //criando a função
-              }
+              onPressed: responder,
             ),
             RaisedButton(
               child: Text('Resposta 3'),
-              onPressed: funcaoQueRetornaUmaOutraFuncao(),//Invocando função como parâmetro
+              onPressed: responder,
             ),
-            RaisedButton(
-              child: Text('Resposta 3'),
-              onPressed: () => print('Resposta 3!!!'),
-            )
+            
             
           ],
         ),
@@ -53,4 +49,12 @@ class PerguntaApp extends StatelessWidget{
 
     );
   }
+}
+class PerguntaApp extends StatefulWidget{//componente que está na árvore de componentes 
+  
+  PerguntaAppState createState() {
+    return PerguntaAppState();
+  }
+  
+  
 }
