@@ -54,9 +54,14 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
              ...respostas.map((t)=> Resposta(t,_responder)).toList(),//operador spread, pega todos os elementos da lista resposta e coloca dentro da lista de Column
 
           ],
-        ) : null,
+        ) 
+        : Center(
+          child: Text(
+            'Parabéns!',
+          style: TextStyle(fontSize:28)
+        ),
       ),
-
+      ),
     );
   }
 }
