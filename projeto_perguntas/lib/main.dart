@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import './questao.dart';
-import './resposta.dart';
+import './questionario.dart';
 import './resultado.dart';
+
 main(){
   runApp(new PerguntaApp());
 }
@@ -34,30 +34,30 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
     }
     
   }
+
+  
   bool get temPerguntaSelecionada{
     return _perguntasSelecionadas < _perguntas.length;
   }
+  
 //a aárvore de componentes também depende do estado
   Widget build(BuildContext context){
     
-    List<String> respostas= temPerguntaSelecionada
-    ? _perguntas[_perguntasSelecionadas]['respostas'] 
-    :null;
+    
  
     return  MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perguntas'),
         ),
-        body: temPerguntaSelecionada ? Column(
-          children: <Widget>[
-            Questao(_perguntas[_perguntasSelecionadas]['texto']),
-             ...respostas.map((t)=> Resposta(t,_responder)).toList(),//operador spread, pega todos os elementos da lista resposta e coloca dentro da lista de Column
-
-          ],
-        ) 
+        body: temPerguntaSelecionada 
+        ? Questionario(
+          perguntas: _perguntas, 
+          perguntaSelecionada: _perguntasSelecionadas,
+          quandoResponder: _responder
+          )
         : Resultado(),
-      ),
+      ), 
     );
   }
 }
