@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 main(){
   runApp(new PerguntaApp());
 }
-class PerguntaAppState extends State<PerguntaApp>{// o tipo de componente Stateful (PerguntaApp) ligado a esse componente state 
+//classe privada
+class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente Stateful (PerguntaApp) ligado a esse componente state 
 //contém o estado e as funçôes que depende do mesmo 
-  var perguntasSelecionadas=0; 
+  var _perguntasSelecionadas=0; 
     
-  void responder(){// o método responder depende de estado 
+  void _responder(){// o método responder depende de estado 
     setState(() {
-      perguntasSelecionadas++;
+      _perguntasSelecionadas++;
     });
     
-    print(perguntasSelecionadas);
+    print(_perguntasSelecionadas);
   }
 //a aárvore de componentes também depende do estado
   Widget build(BuildContext context){
@@ -28,18 +29,18 @@ class PerguntaAppState extends State<PerguntaApp>{// o tipo de componente Statef
         ),
         body: Column(
           children: <Widget>[
-            Text(perguntas[perguntasSelecionadas]),
+            Text(perguntas[_perguntasSelecionadas]),
             RaisedButton(
               child: Text('Resposta 1'),
-              onPressed: responder, //passar um refencia para uma função ja criada
+              onPressed: _responder, //passar um refencia para uma função ja criada
             ),
             RaisedButton(
               child: Text('Resposta 2'),
-              onPressed: responder,
+              onPressed: _responder,
             ),
             RaisedButton(
               child: Text('Resposta 3'),
-              onPressed: responder,
+              onPressed: _responder,
             ),
             
             
@@ -52,8 +53,8 @@ class PerguntaAppState extends State<PerguntaApp>{// o tipo de componente Statef
 }
 class PerguntaApp extends StatefulWidget{//componente que está na árvore de componentes 
   
-  PerguntaAppState createState() {
-    return PerguntaAppState();
+  _PerguntaAppState createState() {
+    return _PerguntaAppState();
   }
   
   
