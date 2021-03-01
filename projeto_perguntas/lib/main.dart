@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './questao.dart';
 import './resposta.dart';
+import './resultado.dart';
 main(){
   runApp(new PerguntaApp());
 }
@@ -55,12 +56,7 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
 
           ],
         ) 
-        : Center(
-          child: Text(
-            'Parabéns!',
-          style: TextStyle(fontSize:28)
-        ),
-      ),
+        : Resultado(),
       ),
     );
   }
