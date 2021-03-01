@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import './questao.dart';
 
 main(){
   runApp(new PerguntaApp());
@@ -29,7 +30,7 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
         ),
         body: Column(
           children: <Widget>[
-            Text(perguntas[_perguntasSelecionadas]),
+            Questao(perguntas[_perguntasSelecionadas]),
             RaisedButton(
               child: Text('Resposta 1'),
               onPressed: _responder, //passar um refencia para uma função ja criada
