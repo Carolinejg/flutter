@@ -15,7 +15,7 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
       _perguntasSelecionadas++;
     });
     
-    print(_perguntasSelecionadas);
+    
   }
 //a aárvore de componentes também depende do estado
   Widget build(BuildContext context){
@@ -31,9 +31,9 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
         body: Column(
           children: <Widget>[
             Questao(perguntas[_perguntasSelecionadas]),
-            Resposta('Resposta 1'),
-            Resposta('Resposta 2'),
-            Resposta('Resposta 3'),
+            Resposta('Resposta 1',_responder),
+            Resposta('Resposta 2',_responder),
+            Resposta('Resposta 3', _responder),
           ],
         ),
       ),
