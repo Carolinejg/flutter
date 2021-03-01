@@ -34,6 +34,8 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
         'respostas': ['Maria','João','Leo','Pedro'],
       },
     ];
+    List<String> respostas= perguntas[_perguntasSelecionadas]['respostas'];
+ 
     return  MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -42,9 +44,8 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
         body: Column(
           children: <Widget>[
             Questao(perguntas[_perguntasSelecionadas]['texto']),
-            Resposta('Resposta 1',_responder),
-            Resposta('Resposta 2',_responder),
-            Resposta('Resposta 3', _responder),
+             ...respostas.map((t)=> Resposta(t,_responder)).toList(),//operador spread, pega todos os elementos da lista resposta e coloca dentro da lista de Column
+
           ],
         ),
       ),
