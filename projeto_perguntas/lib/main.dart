@@ -19,9 +19,20 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
   }
 //a aárvore de componentes também depende do estado
   Widget build(BuildContext context){
-    final List<String> perguntas = [
-      'Qual é a sua cor favorita?',
-      'Qual o seu animal favorito?'
+    final List<Map<String, Object>> perguntas = [//É DO TIPO MAP
+      {
+        'texto':'Qual é a sua cor favorita?',
+        'respostas': ['Preto','Vermelho','Verde','Branco'],
+        
+      },
+      {
+        'texto':'Qual o seu animal favorito?',
+        'respostas': ['Coelho','Cobra','Elefante','Leão'],
+      },
+      {
+        'texto':'Qual o seu instrutor favorito?',
+        'respostas': ['Maria','João','Leo','Pedro'],
+      },
     ];
     return  MaterialApp(
       home: Scaffold(
@@ -30,7 +41,7 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
         ),
         body: Column(
           children: <Widget>[
-            Questao(perguntas[_perguntasSelecionadas]),
+            Questao(perguntas[_perguntasSelecionadas]['texto']),
             Resposta('Resposta 1',_responder),
             Resposta('Resposta 2',_responder),
             Resposta('Resposta 3', _responder),
