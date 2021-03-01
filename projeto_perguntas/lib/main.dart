@@ -9,17 +9,7 @@ main(){
 class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente Stateful (PerguntaApp) ligado a esse componente state 
 //contém o estado e as funçôes que depende do mesmo 
   var _perguntasSelecionadas=0; 
-    
-  void _responder(){// o método responder depende de estado 
-    setState(() {
-      _perguntasSelecionadas++;
-    });
-    
-    
-  }
-//a aárvore de componentes também depende do estado
-  Widget build(BuildContext context){
-    final List<Map<String, Object>> perguntas = [//É DO TIPO MAP
+  final List<Map<String, Object>> _perguntas = const [//É DO TIPO MAP
       {
         'texto':'Qual é a sua cor favorita?',
         'respostas': ['Preto','Vermelho','Verde','Branco'],
@@ -34,20 +24,37 @@ class _PerguntaAppState extends State<PerguntaApp>{// o tipo de componente State
         'respostas': ['Maria','João','Leo','Pedro'],
       },
     ];
-    List<String> respostas= perguntas[_perguntasSelecionadas]['respostas'];
+    
+  void _responder(){// o método responder depende de estado 
+    if(temPerguntaSelecionada){
+      setState(() {
+      _perguntasSelecionadas++;
+    });
+    }
+    
+  }
+  bool get temPerguntaSelecionada{
+    return _perguntasSelecionadas < _perguntas.length;
+  }
+//a aárvore de componentes também depende do estado
+  Widget build(BuildContext context){
+    
+    List<String> respostas= temPerguntaSelecionada
+    ? _perguntas[_perguntasSelecionadas]['respostas'] 
+    :null;
  
     return  MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perguntas'),
         ),
-        body: Column(
+        body: temPerguntaSelecionada ? Column(
           children: <Widget>[
-            Questao(perguntas[_perguntasSelecionadas]['texto']),
+            Questao(_perguntas[_perguntasSelecionadas]['texto']),
              ...respostas.map((t)=> Resposta(t,_responder)).toList(),//operador spread, pega todos os elementos da lista resposta e coloca dentro da lista de Column
 
           ],
-        ),
+        ) : null,
       ),
 
     );
