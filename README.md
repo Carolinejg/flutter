@@ -1,1 +1,4 @@
-# Repositório destinado aos estudos e desenvolvimentos de projetos  durante o curso  de flutter disponível em Cursos Online de Tecnologia (Cod3r)
+## Sobre o projeto
+A aplicação consiste em um questionário contendo as opções de respostas que ao final gera uma mensagem de acordo com a pontuação feita.
+## Layout mobile
+![Web](https://github.com/Carolinejg/flutter/blob/master/Figuras/flutter2.png)
