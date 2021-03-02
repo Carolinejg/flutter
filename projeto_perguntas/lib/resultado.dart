@@ -40,7 +40,7 @@ class Resultado extends StatelessWidget {
          FlatButton(
             child: Text(
               'Reiniciar?',
-            style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18),
             ),
             textColor: Colors.blue,
             onPressed: quandoReiniciarQuestionario,
