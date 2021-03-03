@@ -49,7 +49,22 @@ class MyHomePage extends StatelessWidget {
           Column(
             children: _transactions.map((tr) { //converter um objeto do tipo transaction para um elemento visual
               return Card(
-                child: Text(tr.title),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        tr.value.toString()//pegando o valor e passando para o Text como string 
+                      ),
+                    ),
+                    Column(
+                      children:<Widget> [
+                        Text(tr.title),
+                        Text(tr.date.toString()),
+                      ]
+                    
+                    )
+                  ],
+                ),
               );
             }).toList(), //final do map, pega todos os elementos do map de transações e converte em uma lista 
             
