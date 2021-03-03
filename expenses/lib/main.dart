@@ -58,13 +58,18 @@ class MyHomePage extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.black,
-                          width: 2,
+                        color: Colors.purple,
+                        width: 2,
                         )
                       ),
                       padding: EdgeInsets.all(10),
-                      child: Text(
-                        tr.value.toString()//pegando o valor e passando para o Text como string 
+                        child: Text(
+                        tr.value.toString(),//pegando o valor e passando para o Text como string 
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple, 
+                        ),
                       ),
                     ),
                     Column(
