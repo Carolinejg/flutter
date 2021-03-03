@@ -36,7 +36,6 @@ class MyHomePage extends StatelessWidget {
         title: Text('Despesas pessoais'),
       ),
       body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
           Container(
@@ -97,8 +96,33 @@ class MyHomePage extends StatelessWidget {
                   ],
                 ),
               );
-            }).toList(), //final do map, pega todos os elementos do map de transações e converte em uma lista 
+            }
+            ).toList(), //final do map, pega todos os elementos do map de transações e converte em uma lista 
             
+          ),
+          Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children:<Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Título',
+                    ),
+                  ),
+                  TextField(decoration: InputDecoration(
+                      labelText: 'Valor (R\$)',
+                    )
+                  ),
+                  FlatButton(
+                    child: Text('Nova transação'), 
+                    textColor: Colors.purple,
+                    onPressed: (){},
+                  )
+                ]
+              ),
+            )
           )
         ],
       ),
