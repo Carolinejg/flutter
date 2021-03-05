@@ -11,9 +11,12 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home:
-            MyHomePage() //o componente ExpensesApp tem dentro de si o componente MyHomePage
-        );
+        home: MyHomePage(), //o componente ExpensesApp tem dentro de si o componente MyHomePage
+        theme: ThemeData(
+          primarySwatch: Colors.purple,//cor tema 
+          accentColor: Colors.amber,//cor do botão
+        ),
+    );
   }
 }
 
@@ -49,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _transactions.add(newTransaction);
     });
-    Navigator.of(context).pop();
+    Navigator.of(context).pop();//fechando formulario modal quando os campos são preenchidos 
   }
 
   _openTransactionFormModal(BuildContext context) {
