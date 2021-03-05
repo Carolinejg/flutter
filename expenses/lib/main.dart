@@ -1,6 +1,9 @@
-import 'components/transaction_user.dart';
+import 'package:expenses/components/transactions_form.dart';
+import 'components/transaction_list.dart';
+import 'components/transactions_form.dart';
+import 'models/transaction.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:math';
 
 main() => runApp((ExpensesApp()));
 
@@ -14,27 +17,61 @@ class ExpensesApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  
-  
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _transactions = [
+    Transaction(
+      id: 't1',
+      title: 'Novo Tênis de corrida',
+      value: 310.76,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Conta de luz',
+      value: 210.76,
+      date: DateTime.now(),
+    ),
+  ];
+  _addTransaction(String title, double value) {
+    //criando uma nova transação
+    final newTransaction = Transaction(
+        id: Random().nextDouble().toString(),
+        title: title,
+        value: value,
+        date: DateTime.now());
+
+    //mudando o estado
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+  }
+
+  _openTransactionFormModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return TransactionForm(null);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Despesas pessoais'),
-        actions: <Widget> [
-          IconButton(
-            icon: Icon (Icons.add),
-            onPressed: (){
-
-            },
-          ),
-        ]
-      ),
+      appBar: AppBar(title: Text('Despesas pessoais'), actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _openTransactionFormModal(context),
+        ),
+      ]),
       body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
             Container(
               //envolvi no container para colocar o card na tela toda
               child: Card(
@@ -43,15 +80,13 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            TransactionUser(),
+            TransactionList(_transactions),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: (){
-          
-        },
+        onPressed: () => _openTransactionFormModal(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
