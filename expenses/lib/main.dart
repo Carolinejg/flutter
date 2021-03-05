@@ -15,6 +15,23 @@ class ExpensesApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.purple,//cor tema 
           accentColor: Colors.amber,//cor do botão
+          fontFamily:  'Quicksand',
+          textTheme: ThemeData.light().textTheme.copyWith(
+            headline6: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 18,
+                fontWeight: FontWeight.bold, 
+              ), 
+          ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+              headline6: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 20,
+                fontWeight: FontWeight.bold, 
+              ), 
+            ),
+          ),
         ),
     );
   }
@@ -66,12 +83,20 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Despesas pessoais'), actions: <Widget>[
+      appBar: AppBar(
+        title: Text(
+          'Despesas pessoais',
+          
+
+        ), 
+      actions: <Widget>[
         IconButton(
           icon: Icon(Icons.add),
           onPressed: () => _openTransactionFormModal(context),
         ),
-      ]),
+      ]
+      )
+      ,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
