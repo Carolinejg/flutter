@@ -17,7 +17,7 @@ class ExpensesApp extends StatelessWidget {
           accentColor: Colors.amber,//cor do botão
           fontFamily:  'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
-            headline6: TextStyle(
+            headline6:TextStyle(
                 fontFamily: 'OpenSans',
                 fontSize: 18,
                 fontWeight: FontWeight.bold, 
@@ -43,8 +43,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _transactions = [
-    Transaction(
+  final List<Transaction> _transactions = [
+   /*  Transaction(
       id: 't1',
       title: 'Novo Tênis de corrida',
       value: 310.76,
@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
       title: 'Conta de luz',
       value: 210.76,
       date: DateTime.now(),
-    ),
+    ), */
   ];
   _addTransaction(String title, double value) {
     //criando uma nova transação

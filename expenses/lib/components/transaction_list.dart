@@ -12,7 +12,23 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      child: SingleChildScrollView(
+      child: transactions.isEmpty ? Column( //se não tiver nenhuma transação cadastrada m,ostra a mensagem e a figura 
+        children: <Widget>[
+          SizedBox(height:20),
+          Text(
+            'Nenhuma transação cadastrada',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          SizedBox(height:30),
+          Container(
+            height: 200,
+            child: Image.asset('assets\\imagens\\waiting.png',
+            fit: BoxFit.cover,//para se ajustar ao tamanho
+            ),
+          ),
+          
+        ],
+      ) : SingleChildScrollView(
             child: Column(
                 children: transactions.map((tr) { //converter um objeto do tipo transaction para um elemento visual
                   return Card(
