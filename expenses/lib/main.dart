@@ -1,10 +1,11 @@
+import 'package:expenses/components/chart.dart';
 import 'package:expenses/components/transactions_form.dart';
 import 'components/transaction_list.dart';
 import 'components/transactions_form.dart';
 import 'models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-
+import 'components/chart.dart';
 main() => runApp((ExpensesApp()));
 
 class ExpensesApp extends StatelessWidget {
@@ -44,19 +45,35 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [
-   /*  Transaction(
+    Transaction(
+      id: 't0',
+      title: 'Conta antiga',
+      value: 400.00,
+      date: DateTime.now().subtract(Duration(days: 33)),
+    ),
+    Transaction(
       id: 't1',
       title: 'Novo Tênis de corrida',
       value: 310.76,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 3)),
     ),
     Transaction(
       id: 't2',
       title: 'Conta de luz',
       value: 210.76,
-      date: DateTime.now(),
-    ), */
+      date: DateTime.now().subtract(Duration(days: 5)),
+    ),
   ];
+
+//Retorna uma lista de transaçôes com as transaçôes dos últimos 7 dias
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((tr){
+      return tr.date.isAfter(DateTime.now().subtract(//se a data da transação for depois retorna verdadeiro (isAfter) e significa que ela precisa estar na nova lista 
+        Duration(days: 7),//pega a data atual e subtrai 7 dias
+      ));
+    }).toList();
+  }
+
   _addTransaction(String title, double value) {
     //criando uma nova transação
     final newTransaction = Transaction(
@@ -101,14 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              //envolvi no container para colocar o card na tela toda
-              child: Card(
-                color: Colors.blue,
-                child: Text('Gráficos'),
-                elevation: 5,
-              ),
-            ),
+            Chart(_recentTransactions),
             TransactionList(_transactions),
           ],
         ),
