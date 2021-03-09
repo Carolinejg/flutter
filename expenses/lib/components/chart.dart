@@ -33,7 +33,7 @@ class Chart extends StatelessWidget {
         'day': DateFormat.E().format(weekDay)[0], //pega a primeira letra do dia da semana atual
         'value': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   double get _weekTotalValue{
