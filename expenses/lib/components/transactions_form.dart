@@ -10,18 +10,18 @@ class TransactionForm extends StatefulWidget {
 }
 
 class _TransactionFormState extends State<TransactionForm> {
-  final titleController= TextEditingController();
+  final titleController = TextEditingController();
 
-  final valueController= TextEditingController();
+  final valueController = TextEditingController();
 
-  _submitForm(){
-    final title =titleController.text;
-    final value =double.tryParse(valueController.text) ?? 0.0;
+  _submitForm() {
+    final title = titleController.text;
+    final value = double.tryParse(valueController.text) ?? 0.0;
 
-    if(title.isEmpty || value <=0){
+    if (title.isEmpty || value <= 0) {
       return;
     }
-    widget.onSubmit(title,value);
+    widget.onSubmit(title, value);
   }
 
   @override
@@ -33,22 +33,46 @@ class _TransactionFormState extends State<TransactionForm> {
           child: Column(children: <Widget>[
             TextField(
               controller: titleController,
-              onSubmitted: (_)=> _submitForm(),
+              onSubmitted: (_) => _submitForm(),
               decoration: InputDecoration(
                 labelText: 'Título',
               ),
             ),
             TextField(
-                controller: valueController,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                onSubmitted: (_)=> _submitForm(),
-                decoration: InputDecoration(
-                  labelText: 'Valor (R\$)',
-                )),
-            FlatButton(
-              child: Text('Nova transação'),
-              textColor: Colors.purple,
-              onPressed: _submitForm,
+              controller: valueController,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => _submitForm(),
+              decoration: InputDecoration(
+                labelText: 'Valor (R\$)',
+              ),
+            ),
+            Container(
+              height: 70,
+              child: Row(
+                children: <Widget>[
+                  Text('Nunhuma data selecionada!'),
+                  FlatButton(
+                    textColor: Theme.of(context).primaryColor,
+                    child: Text('Selecionar Data', 
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    ),
+                    onPressed: () {},
+                  )
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                RaisedButton(
+                  child: Text('Nova transação'),
+                  color: Theme.of(context).primaryColor,
+                  textColor: Theme.of(context).textTheme.button.color,
+                  onPressed: _submitForm,
+                ),
+              ],
             )
           ]),
         ));
