@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();//fechando formulario modal quando os campos são preenchidos 
   }
 
-  _openTransactionFormModal(BuildContext context) {
+  _openTransactionFormModal(BuildContext context) {//aba que exibe os campos para cadastro de novas transações
     showModalBottomSheet(
         context: context,
         builder: (_) {
