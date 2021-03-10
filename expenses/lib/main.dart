@@ -68,11 +68,20 @@ class _MyHomePageState extends State<MyHomePage> {
         date: date,
     );
 
-    //mudando o estado
+      //mudando o estado
     setState(() {
       _transactions.add(newTransaction);
     });
     Navigator.of(context).pop();//fechando formulario modal quando os campos são preenchidos 
+  }
+
+
+  _removeTransaction(String id){
+    setState(() {
+      _transactions.removeWhere((tr) {//retorna true se o elemento for removido 
+        return tr.id == id;
+      });
+    });
   }
 
   _openTransactionFormModal(BuildContext context) {//aba que exibe os campos para cadastro de novas transações
@@ -105,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recentTransactions),
-            TransactionList(_transactions),
+            TransactionList(_transactions,_removeTransaction),
           ],
         ),
       ),
