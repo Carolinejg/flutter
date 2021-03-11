@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/category.dart';
 import 'package:meals/screens/categories_meals_screen.dart';
-import 'package:meals/screens/categories_screen.dart';
+
 
 
 class CategoryItem extends StatelessWidget {
@@ -14,7 +14,7 @@ class CategoryItem extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_){//desconsiderando 
-          return CategoriesMealsScreen(); //criando uma instancia do componente que quero navegar 
+          return CategoriesMealsScreen(category); //criando uma instancia do componente que quero navegar 
         },
       ),
     );
