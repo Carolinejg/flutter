@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/category.dart';
-import 'package:meals/screens/categories_meals_screen.dart';
+import '../utils/app_routes.dart';
 
 
 
@@ -10,13 +10,11 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem(this.category);
 
   void _selectCategory(BuildContext context){
-    //colocando a tela na pilha de telas para navegação
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_){//desconsiderando 
-          return CategoriesMealsScreen(category); //criando uma instancia do componente que quero navegar 
-        },
-      ),
+   
+    //rota nomeada 
+    Navigator.of(context).pushNamed(
+      AppRoutes.CATEGORIES_MEALS,
+      arguments: category,
     );
   }
 
