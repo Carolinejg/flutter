@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/category.dart';
 import '../data/dummy.dart';
+import 'package:meals/components/meal_item.dart';
 
 ///tela contendo todas as comidas de uma categoria
 
@@ -10,7 +11,7 @@ class CategoriesMealsScreen extends StatelessWidget {
     final category = ModalRoute.of(context).settings.arguments as Category;
     final categoryMeals = DUMMY_MEALS.where((meal) {
       return meal.categories.contains(category
-          .id); //se o id da category está dentro está dendtro das categorias da meals retorna true
+          .id); //se o id da category está dentro está dentro das categorias da meals retorna true
     }).toList();
     return Scaffold(
       appBar: AppBar(
@@ -19,7 +20,7 @@ class CategoriesMealsScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: categoryMeals.length,
         itemBuilder: (ctx, index) {
-          return Text(categoryMeals[index].title);
+          return MealItem(categoryMeals[index]);
         },
       ),
     );
